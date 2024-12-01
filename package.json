@@ -1,0 +1,14 @@
+{
+  "name": "shopverse-backend",
+  "version": "1.0.0",
+  "description": "The powerhouse of the shopverse app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Patrick Iyiakimo",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
