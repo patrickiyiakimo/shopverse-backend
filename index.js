@@ -1,4 +1,3 @@
-// require("dotenv").config();
 const db = require("./src/config/db");
 
 const app = require("./app");
