@@ -17,6 +17,10 @@ app.use(
 //middleware
 app.use(express.json());
 
+// Routes
+app.use("/register", require("./routes/registerUser"));
+app.use("/login", require("./routes/loginUser"));
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
