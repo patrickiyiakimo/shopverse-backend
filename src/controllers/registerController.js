@@ -1,5 +1,6 @@
-const { Pool } = require('pg');
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
+const pool = require("../config/db");
+require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
