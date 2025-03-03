@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
         );
 
         const user = result.rows[0];
-        const token = jwt.sign({ id: user.id, username: user.username }, 'your_jwt_secret', { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id, username: user.username }, 'my_jwt_secret', { expiresIn: '1h' });
 
         res.status(201).json({ message: 'User registered successfully', token });
     } catch (error) {
