@@ -12,7 +12,7 @@ const loginUser = async (req, res) => {
     const userResult = await pool.query(userQuery, [email]);
 
     if (userResult.rows.length === 0) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      return res.sendStatus(401).json({ message: "Invalid email or password" });
     }
     const user = userResult.rows[0];
 
