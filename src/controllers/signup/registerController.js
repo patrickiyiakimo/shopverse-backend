@@ -4,7 +4,7 @@ require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email } = req.body;
 
     if (!username || !email || !password) {
         return res.status(400).json({ message: 'All fields are required' });
