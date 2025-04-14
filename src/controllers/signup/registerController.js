@@ -7,7 +7,7 @@ const registerUser = async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-        return res.status(400).json({ message: 'All fields are required' });
+        return res.status(400).json({ message: 'equired' });
     }
 
     try {
@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
         const user = result.rows[0];
         const token = jwt.sign({ id: user.id, username: user.username }, 'my_jwt_secret', { expiresIn: '1h' });
 
-        res.status(201).json({ message: 'User registered successfully', token });
+        res.status(201).json({ message: 'User Signed up successfully', token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
