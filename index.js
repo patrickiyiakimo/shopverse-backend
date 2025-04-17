@@ -7,5 +7,5 @@ app.get("/", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.send("Details Not Found");
+  res.send("Resources Not Found");
 });
