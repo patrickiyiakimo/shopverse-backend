@@ -1,0 +1,1 @@
+CREATE DATABASE shopverse_database
