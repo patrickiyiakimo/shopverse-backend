@@ -22,9 +22,9 @@ const loginUser = async (req, res) => {
       return res.sendStatus(401).json({ message: "Invalid email or password" });
     }
 
-    const token = jwt.sign({ userId: user.id }, "my_jwt_secret", { expiresIn: "1h" });
+    // const token = jwt.sign({ userId: user.id }, "my_jwt_secret", { expiresIn: "1h" });
 
-    res.json({ token });
+    // res.json({ token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
