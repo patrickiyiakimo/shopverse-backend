@@ -9,6 +9,12 @@ const registerUser = async (req, res) => {
     if (!username || !email || !password) {
         return res.status(400).json({ message: 'Username and email and password are required' });
     }
+    
+    //Duplicate check
+    const userExists = await pool.query('SELECT * from users WHERE username = $1 OR email = $2', [username, email])
+    if (userExists.rows.length > 0) {
+        return res.status(400).json({ message: 'Username or email already exists' });
+    }
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
