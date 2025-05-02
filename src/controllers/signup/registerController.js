@@ -4,10 +4,10 @@ require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
-    const { first_name, last_name, email, password, phone_number } = req.body;
+    const { first_name, last_name, email, phone_number, password} = req.body;
 
-    if (!first_name || !last_name || !email || !password) {
-        return res.status(400).json({ message: 'first_name, last_name, email, and password are required' });
+    if (!first_name || !last_name || !email || !phone_number || !password) {
+        return res.status(400).json({ message: 'first_name, last_name, email, phone_number and password are required' });
     }
 
     // Check for duplicate email
@@ -19,8 +19,8 @@ const registerUser = async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
         const result = await pool.query(
-            'INSERT INTO users (first_name, last_name, email, password, phone_number) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-            [first_name, last_name, email, hashedPassword, phone_number]
+            'INSERT INTO users (first_name, last_name, email, phone_number, password) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            [first_name, last_name, email, phone_number, hashedPassword]
         );
         const user = result.rows[0];
 
