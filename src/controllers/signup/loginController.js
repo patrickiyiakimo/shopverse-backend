@@ -7,7 +7,7 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({ message: "Email and password are required" });
+    return res.sendStatus(400).json({ message: "Email and password are required" });
   }
 
   try {
@@ -15,14 +15,14 @@ const loginUser = async (req, res) => {
     const userResult = await pool.query(userQuery, [email]);
 
     if (userResult.rows.length === 0) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      return res.sendStatus(401).json({ message: "Invalid email or password" });
     }
     const user = userResult.rows[0];
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      return res.sensStatus(401).json({ message: "Invalid email or password" });
     }
     
     const token = jwt.sign(
@@ -33,7 +33,7 @@ const loginUser = async (req, res) => {
     res.json({ message: "Login successful", token });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.sendStatus(500).json({ message: "Internal server error" });
   }
 };
 
