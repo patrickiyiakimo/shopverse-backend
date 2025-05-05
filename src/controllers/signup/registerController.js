@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
     // Check for duplicate email
     const userExists = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     if (userExists.rows.length > 0) {
-        return res.status(400).json({ message: 'Email already exists' });
+        return res.sendStatus(400).json({ message: 'Email already exists' });
     }
 
     try {
@@ -26,10 +26,10 @@ const registerUser = async (req, res) => {
 
         const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.status(201).json({ message: 'User signed up successfully', token });
+        res.sendStatus(201).json({ message: 'User signed up successfully', token });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Server error' });
+        res.sendStatus(500).json({ message: 'Server error' });
     }
 };
 
