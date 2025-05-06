@@ -40,22 +40,22 @@ CREATE TABLE orders (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE addresses (
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT REFERENCES users(id),
-    address_line1 VARCHAR(255) NOT NULL,
-    address_line2 VARCHAR(255),
-    city VARCHAR(100) NOT NULL,
-    state VARCHAR(100) NOT NULL,
-    postal_code VARCHAR(20) NOT NULL,
-    country VARCHAR(100) NOT NULL,
-    order_id BIGINT REFERENCES orders(id),
-    amount DECIMAL(10, 2) NOT NULL,
-    payment_method VARCHAR(50) NOT NULL,
-    status VARCHAR(50) DEFAULT 'pending',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+-- CREATE TABLE addresses (
+--     id BIGSERIAL PRIMARY KEY,
+--     user_id BIGINT REFERENCES users(id),
+--     address_line1 VARCHAR(255) NOT NULL,
+--     address_line2 VARCHAR(255),
+--     city VARCHAR(100) NOT NULL,
+--     state VARCHAR(100) NOT NULL,
+--     postal_code VARCHAR(20) NOT NULL,
+--     country VARCHAR(100) NOT NULL,
+--     order_id BIGINT REFERENCES orders(id),
+--     amount DECIMAL(10, 2) NOT NULL,
+--     payment_method VARCHAR(50) NOT NULL,
+--     status VARCHAR(50) DEFAULT 'pending',
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
 
 CREATE TABLE cart_items (
     id BIGSERIAL PRIMARY KEY,
