@@ -37,6 +37,7 @@ app.get("/", (req, res) => {
       <div class="container">
         <h1>Welcome to ShopVerse</h1>
         <p>ShopVerse is your trusted e-commerce backend solution, powering modern online shopping experiences.</p>
+        <p>ShopVerse is a robust and scalable architecture designed to support a seamless and efficient e-commerce experience. Built with modern technologies and best practices, it serves as the backbone of the platform, ensuring high performance, security, and reliability.</p>
         <p>Our API is secure, scalable, and built for performance. Use the documentation to explore available endpoints and start building your store today.</p>
         <p><strong>Status:</strong> API is running smoothly ✅</p>
       </div>
@@ -84,6 +85,7 @@ app.get("*", (req, res) => {
       <div class="container">
         <h1>404 - Resources Not Found</h1>
         <p>Sorry, the page you are looking for does not exist.</p>
+        <p><a href="/">Go back to Home</a></p>
       </div>
     </body>
     </html>
