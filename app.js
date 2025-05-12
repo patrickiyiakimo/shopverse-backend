@@ -18,8 +18,7 @@ app.use(
 app.use(express.json());
 
 // Routes
-app.use("/register", require("./src/routes/signup/registerRoutes"));
-app.use("/login", require("./src/routes/signup/loginRoutes"));
+app.use("/api/auth", require("./src/routes/auth"));
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
