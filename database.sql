@@ -5,7 +5,6 @@ CREATE TABLE users (
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     email VARCHAR(50) NOT NULL,
-    phone_number VARCHAR(20),
     password VARCHAR(55) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -24,6 +23,7 @@ CREATE TABLE products (
     name VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
+    image_url NOT NULL,
     stock INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
