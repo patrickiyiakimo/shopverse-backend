@@ -35,7 +35,6 @@ CREATE TABLE orders (
     product_id BIGINT REFERENCES products(id),
     quantity INT NOT NULL,
     total_price DECIMAL(10, 2) NOT NULL,
-    status VARCHAR(50) DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
