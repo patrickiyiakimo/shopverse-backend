@@ -24,3 +24,17 @@ exports.getProductById = async (req, res) => {
         res.sendStatus(500).json({message: "Internal server error"})
     }
 };
+
+exports.createProduct = async (req,res) => {
+    const {name, description, price, image_url, stock} = req.body;
+    if (!name || !description || !price || !image_url || !stock) {
+        return res.status(400).json({message: "All fields are required"});
+    }
+    try {
+        const result = await db.query("INSERT INTO products (name, description, price, image_url, stock) VALUES ($1, $2, $3, $4, $5) RETURNING *", [name, description, price, image_url, stock]);
+        res.status(201).json(result.rows[0]);
+    } catch (error) {
+        console.error(error)
+        res.sendStatus(500).json({message: "Internal server error"})
+    }
+}
