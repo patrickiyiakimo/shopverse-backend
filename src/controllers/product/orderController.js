@@ -1,6 +1,6 @@
 const db = require("../../config/db");
 
-exports.getAllOrders = async (req, res) => {
+const getAllOrders = async (req, res) => {
     try {
         const result = await db.query("SELECT * FROM orders");
         res.status(200).json(result.rows);
@@ -10,7 +10,7 @@ exports.getAllOrders = async (req, res) => {
     }
 };
 
-exports.getOrderById = async (req, res) => {
+const getOrderById = async (req, res) => {
     const { id } = req.params;
     try {
         const result = await db.query("SELECT * FROM orders WHERE id = $1", [id]);
@@ -24,7 +24,7 @@ exports.getOrderById = async (req, res) => {
     }
 };
 
-exports.createOrder = async (req, res) => {
+const createOrder = async (req, res) => {
     const { user_id, product_id, quantity, total_price } = req.body;
     if (!user_id || !product_id || !quantity || !total_price) {
         return res.status(400).json({ message: "All fields are required" });
@@ -38,7 +38,7 @@ exports.createOrder = async (req, res) => {
     }
 };
 
-exports.deleteOrder = async (req, res) => {
+const deleteOrder = async (req, res) => {
     const { id } = req.params;
     try {
         const result = await db.query("DELETE FROM orders WHERE id = $1 RETURNING *", [id]);
@@ -50,4 +50,11 @@ exports.deleteOrder = async (req, res) => {
         console.error(error);
         res.sendStatus(500).json({ message: "Internal server error" });
     }
+};
+
+module.exports = {
+    getAllOrders,
+    getOrderById,
+    createOrder,
+    deleteOrder
 };
