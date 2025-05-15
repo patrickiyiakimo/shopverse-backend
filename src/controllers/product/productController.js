@@ -1,7 +1,7 @@
 const { json } = require("express");
 const db = require("../../config/db");
 
-exports.getAllProducts = async (req, res) =>{
+const getAllProducts = async (req, res) =>{
     try {
         const result = await db.query("SELECT * FROM products"); 
         res.status(200).json(result.rows);   
@@ -11,7 +11,7 @@ exports.getAllProducts = async (req, res) =>{
     }
 };
 
-exports.getProductById = async (req, res) => {
+const getProductById = async (req, res) => {
     const {id} = req.params;
     try {
         const result = await db.query("SELECT * FROM products WHERE id = $1", [id]);
@@ -25,7 +25,7 @@ exports.getProductById = async (req, res) => {
     }
 };
 
-exports.createProduct = async (req,res) => {
+const createProduct = async (req,res) => {
     const {name, description, price, image_url, stock} = req.body;
     if (!name || !description || !price || !image_url || !stock) {
         return res.status(400).json({message: "All fields are required"});
@@ -39,7 +39,7 @@ exports.createProduct = async (req,res) => {
     }
 }
 
-exports.updateProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
     const {id} = req.params;
     const {name, description, price, image_url, stock} = req.body;
     if (!name || !description || !price || !image_url || !stock) {
@@ -57,7 +57,7 @@ exports.updateProduct = async (req, res) => {
     }
 };
 
-exports.deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
     const {id} = req.params;
     try {
         const result = await db.query("DELETE FROM products WHERE id = $1 RETURNING *", [id]);
@@ -70,3 +70,11 @@ exports.deleteProduct = async (req, res) => {
         res.sendStatus(500).json({message: "Internal server error"})
     }
 }
+
+module.exports = {
+    getAllProducts,
+    getProductById,
+    createProduct,
+    updateProduct,
+    deleteProduct
+};
