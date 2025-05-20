@@ -1,6 +1,7 @@
-const {createMessage} = require('../../services/messageService');
+const db = require('../../config/db');
+const {createMessage} = require('../../models/messageModel');
 
-const postMessage = async (req, res) => {
+const sendMessage = async (req, res) => {
     const {subject, email, message} = req.body;
 
     if(!subject || !email || !message) {
@@ -14,4 +15,4 @@ const postMessage = async (req, res) => {
     }
 }
 
-module.exports = {postMessage};
+module.exports = {sendMessage};
